@@ -18,4 +18,41 @@ object LoopsConditionalsComprehensions extends App {
 
   // for with guards
   for(arr <- multiArray; i <- arr; if i % 2 == 0) println(i) // prints 2, 4, 6
+
+  var totalIf = 0
+  for (x <- 1 to 10) {
+    if(x % 2 ==0) totalIf += x
+    else totalIf += 2
+  }
+  println(totalIf)
+
+  for(i <- Range.inclusive(1, 10)) {
+    println(
+      if(i % 2 == 0) println("Even")
+      else println("Odd")
+    )
+  }
+
+  // COMPREHENSIONS
+  val comprehensionArray = Array(1, 2, 3, 4)
+  val comprehensionArray2 = for {
+    i <- comprehensionArray
+  } yield i * i
+
+  val filteredComprehensionArray = for {
+    i <- comprehensionArray if i % 2 == 0
+  } yield i * i
+
+  println(comprehensionArray.mkString)
+  println(comprehensionArray2.mkString)
+  println(filteredComprehensionArray.mkString)
+
+  // concatenation
+  val numbers = Array(1, 2, 3)
+  val strings = Array("hello", "world", "scala")
+  val concatenated = for {
+    n <- numbers
+    s <- strings
+  } yield n + s
+  concatenated.foreach(elem => println(elem))
 }
